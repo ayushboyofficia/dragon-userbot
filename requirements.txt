@@ -1,2 +1,6 @@
-pyrogram
+pyrogram>=2.0.0
 tgcrypto
+python-dotenv
+pymongo
+speedtest-cli
+requests
