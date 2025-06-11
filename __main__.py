@@ -1,24 +1,18 @@
-from pyrogram import Client
-import os
-import glob
-import importlib
-
-API_ID = int(os.environ.get("API_ID", 0))
-API_HASH = os.environ.get("API_HASH", "")
-SESSION = os.environ.get("STRING_SESSION", "")
+import os, asyncio, glob, importlib
+from pyrogram import Client, idle
 
 app = Client(
-    name="Dragon-Userbot",
-    api_id=API_ID,
-    api_hash=API_HASH,
-    session_string=SESSION
+    "dragon_userbot",
+    api_id=int(os.environ["API_ID"]),
+    api_hash=os.environ["API_HASH"],
+    session_string=os.environ["STRING_SESSION"]
 )
 
-# Load all plugins dynamically
-plugin_files = glob.glob("plugins/*.py")
-for plugin in plugin_files:
-    module_name = plugin.replace("/", ".").rstrip(".py")
-    importlib.import_module(module_name)
+# Load all plugin files
+for file in glob.glob("modules/*.py"):
+    importlib.import_module(file.replace("/", ".")[:-3])
 
-print("🔥 Dragon-Userbot (Userbot Mode) is online!")
-app.run()
+print("🐉 Dragon-Userbot (Userbot Mode) is live!")
+app.start()
+idle()
+app.stop()
