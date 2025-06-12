@@ -1,6 +1,4 @@
-pyrogram>=2.0.0
+pyrogram==2.0.106
 tgcrypto
+aiohttp
 python-dotenv
-pymongo
-speedtest-cli
-requests
